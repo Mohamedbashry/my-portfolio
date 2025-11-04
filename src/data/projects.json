@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "CI/CD Pipeline Automation",
+    "description": "Built a comprehensive Jenkins pipeline for automated testing, Docker image building, and deployment to production. Implemented multi-stage builds, automated rollbacks, and integrated Slack notifications for deployment status.",
+    "techStack": ["Jenkins", "Docker", "GitHub Actions", "Bash", "AWS ECS"],
+    "category": "Automation",
+    "githubLink": "https://github.com/bashry/cicd-pipeline",
+    "liveLink": "https://github.com/bashry/cicd-pipeline",
+    "imageUrl": "/project1.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Kubernetes Microservices Deployment",
+    "description": "Deployed a multi-container microservices application on a self-managed Kubernetes cluster. Configured ingress controllers, implemented horizontal pod autoscaling, and set up persistent storage with StatefulSets.",
+    "techStack": ["Kubernetes", "Docker", "Helm", "NGINX Ingress", "Prometheus"],
+    "category": "Cloud",
+    "githubLink": "https://github.com/bashry/k8s-microservices",
+    "liveLink": "https://github.com/bashry/k8s-microservices",
+    "imageUrl": "/project2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Infrastructure as Code (Terraform)",
+    "description": "Automated complete AWS infrastructure setup using Terraform modules. Provisioned VPCs, EC2 instances, RDS databases, S3 buckets, and IAM roles. Implemented remote state management and workspace separation for different environments.",
+    "techStack": ["Terraform", "AWS", "CloudFormation", "GitLab CI", "Python"],
+    "category": "Cloud",
+    "githubLink": "https://github.com/bashry/terraform-aws-infra",
+    "liveLink": "https://github.com/bashry/terraform-aws-infra",
+    "imageUrl": "/project3.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Monitoring Stack Setup",
+    "description": "Implemented a complete monitoring solution using Prometheus for metrics collection and Grafana for visualization. Created custom dashboards, configured alert rules, and integrated with PagerDuty for incident management. Monitors application performance, infrastructure health, and business KPIs.",
+    "techStack": ["Prometheus", "Grafana", "AlertManager", "Node Exporter", "Docker"],
+    "category": "Monitoring",
+    "githubLink": "https://github.com/bashry/monitoring-stack",
+    "liveLink": "https://github.com/bashry/monitoring-stack",
+    "imageUrl": "/project4.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Ansible Configuration Management",
+    "description": "Created Ansible playbooks for automated server configuration and application deployment across multiple environments. Implemented role-based organization, variable encryption with Ansible Vault, and idempotent configurations for consistent infrastructure state.",
+    "techStack": ["Ansible", "Python", "Jinja2", "Linux", "AWS"],
+    "category": "Automation",
+    "githubLink": "https://github.com/bashry/ansible-playbooks",
+    "liveLink": "https://github.com/bashry/ansible-playbooks",
+    "imageUrl": "/project5.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Docker Multi-Stage Build Optimization",
+    "description": "Optimized Docker images by implementing multi-stage builds, reducing image size by 70%. Created reusable base images, implemented layer caching strategies, and set up automated vulnerability scanning with Trivy.",
+    "techStack": ["Docker", "Docker Compose", "Trivy", "GitLab CI", "Alpine Linux"],
+    "category": "Automation",
+    "githubLink": "https://github.com/bashry/docker-optimization",
+    "liveLink": "https://github.com/bashry/docker-optimization",
+    "imageUrl": "/project6.jpg"
+  }
+]
