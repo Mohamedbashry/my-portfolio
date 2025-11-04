@@ -50,7 +50,7 @@ const About = () => {
 
         {/* About Content */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
-          {/* Photo Placeholder */}
+          {/* Photo */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -58,8 +58,12 @@ const About = () => {
             transition={{ duration: 0.5 }}
             className="flex justify-center items-center"
           >
-            <div className="w-full max-w-md aspect-square bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl shadow-2xl flex items-center justify-center">
-              <div className="text-white text-8xl font-bold">MB</div>
+            <div className="w-full max-w-md aspect-square rounded-2xl shadow-2xl overflow-hidden">
+              <img 
+                src="/Bashryimg.jpg" 
+                alt="Mohamed Bashry" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </motion.div>
 
