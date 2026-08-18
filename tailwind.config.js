@@ -7,7 +7,8 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-              primary: {
+      colors: {
+        primary: {
           50: '#eaf3ee',
           100: '#c9dfd2',
           200: '#9cc2ab',
