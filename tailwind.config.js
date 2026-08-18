@@ -9,17 +9,17 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-        },
+  50: '#eef2f9',
+  100: '#d6e0ef',
+  200: '#adc2df',
+  300: '#7d9dc9',
+  400: '#4d76ab',
+  500: '#2c5282',
+  600: '#1e3a5f',
+  700: '#162c48',
+  800: '#0f1f33',
+  900: '#0a1420',
+},
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in',
