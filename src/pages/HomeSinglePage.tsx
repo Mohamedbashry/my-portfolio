@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiDownload } from 'react-icons/fi';
+import { profile } from '../data/portfolio';
 
 const HomeSinglePage = () => {
   const scrollToSection = (sectionId: string) => {
@@ -44,7 +45,7 @@ const HomeSinglePage = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-6"
           >
-            DevOps Engineer
+            {profile.role}
           </motion.h2>
 
           {/* Tagline */}
@@ -54,7 +55,7 @@ const HomeSinglePage = () => {
             transition={{ delay: 0.8, duration: 0.8 }}
             className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12"
           >
-            Bridging Development and Operations — automating everything from code to cloud.
+            {profile.heroDescription}
           </motion.p>
 
           {/* CTA Buttons */}

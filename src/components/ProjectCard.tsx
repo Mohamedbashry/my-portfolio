@@ -1,16 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  techStack: string[];
-  category: string;
-  githubLink: string;
-  liveLink: string;
-  imageUrl: string;
-}
+import type { Project } from '../data/portfolio';
 
 interface ProjectCardProps {
   project: Project;
@@ -28,9 +18,12 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       className="card group"
     >
       {/* Project Image/Placeholder */}
-      <div className="relative h-48 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg mb-4 overflow-hidden">
+      <div
+        className="relative h-48 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg mb-4 overflow-hidden bg-cover bg-center"
+        style={project.image ? { backgroundImage: `url(${project.image})` } : undefined}
+      >
         <div className="absolute inset-0 flex items-center justify-center text-white text-6xl font-bold opacity-20">
-          {project.id}
+          {project.title.slice(0, 1)}
         </div>
         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
       </div>
@@ -46,6 +39,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
         {project.title}
       </h3>
+
+      <p className="text-sm font-medium text-primary-600 dark:text-primary-400 mb-2">
+        {project.role}
+      </p>
 
       {/* Description */}
       <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
@@ -65,26 +62,22 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       </div>
 
       {/* Links */}
-      <div className="flex gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-        <a
-          href={project.githubLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300"
-        >
-          <FaGithub className="w-5 h-5" />
-          <span className="text-sm font-medium">Code</span>
-        </a>
-        <a
-          href={project.liveLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300"
-        >
-          <FaExternalLinkAlt className="w-4 h-4" />
-          <span className="text-sm font-medium">Details</span>
-        </a>
-      </div>
+      {project.links.length > 0 && (
+        <div className="flex gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          {project.links.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300"
+            >
+              {link.type === 'repo' ? <FaGithub className="w-5 h-5" /> : <FaExternalLinkAlt className="w-4 h-4" />}
+              <span className="text-sm font-medium">{link.label}</span>
+            </a>
+          ))}
+        </div>
+      )}
     </motion.div>
   );
 };

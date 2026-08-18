@@ -1,40 +1,42 @@
 import { motion } from 'framer-motion';
 import SkillBadge from '../components/SkillBadge';
+import { FiCode } from 'react-icons/fi';
 import {
-  SiDocker,
-  SiKubernetes,
-  SiTerraform,
-  SiAnsible,
-  SiJenkins,
-  SiGithubactions,
-  SiPython,
-  SiGnubash,
+  SiAdobeillustrator,
+  SiAdobephotoshop,
   SiAmazonaws,
-  SiMicrosoftazure,
-  SiPrometheus,
-  SiGrafana,
-  SiLinux,
+  SiBootstrap,
+  SiCplusplus,
+  SiCanva,
+  SiCsharp,
+  SiDocker,
+  SiFigma,
   SiGit,
+  SiGithub,
+  SiHtml5,
+  SiJenkins,
+  SiJavascript,
+  SiKubernetes,
+  SiLinux,
+  SiMysql,
+  SiPhp,
+  SiPython,
+  SiReact,
+  SiTerraform,
 } from 'react-icons/si';
+import type { IconType } from 'react-icons';
+import { certifications, profile, skillGroups } from '../data/portfolio';
+
+const skillIcons: Record<string, IconType> = {
+  'C#': SiCsharp, 'PHP': SiPhp, 'Python': SiPython, 'C++': SiCplusplus,
+  'JavaScript': SiJavascript, 'React.js': SiReact, 'HTML5': SiHtml5, 'Bootstrap': SiBootstrap,
+  'MySQL': SiMysql, 'AWS': SiAmazonaws, 'Docker': SiDocker, 'Kubernetes': SiKubernetes,
+  'Jenkins': SiJenkins, 'Terraform': SiTerraform, 'Git': SiGit, 'GitHub': SiGithub,
+  'Linux (Ubuntu)': SiLinux, 'Figma': SiFigma, 'Adobe Illustrator': SiAdobeillustrator,
+  'Adobe Photoshop': SiAdobephotoshop, 'Canva': SiCanva,
+};
 
 const AboutSinglePage = () => {
-  const skills = [
-    { name: 'Docker', icon: SiDocker },
-    { name: 'Kubernetes', icon: SiKubernetes },
-    { name: 'Terraform', icon: SiTerraform },
-    { name: 'Ansible', icon: SiAnsible },
-    { name: 'Jenkins', icon: SiJenkins },
-    { name: 'GitHub Actions', icon: SiGithubactions },
-    { name: 'Python', icon: SiPython },
-    { name: 'Bash', icon: SiGnubash },
-    { name: 'AWS', icon: SiAmazonaws },
-    { name: 'Azure', icon: SiMicrosoftazure },
-    { name: 'Prometheus', icon: SiPrometheus },
-    { name: 'Grafana', icon: SiGrafana },
-    { name: 'Linux', icon: SiLinux },
-    { name: 'Git', icon: SiGit },
-  ];
-
   return (
     <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50">
       <div className="max-w-6xl mx-auto">
@@ -77,32 +79,11 @@ const AboutSinglePage = () => {
             className="flex flex-col justify-center space-y-6"
           >
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-              DevOps Engineer & Cloud Enthusiast
+              {profile.aboutTitle}
             </h2>
             
             <div className="space-y-4 text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-              <p>
-                Iam passionate about bridging the gap between development and operations, 
-                creating seamless workflows that empower teams to deliver software faster 
-                and more reliably.
-              </p>
-              
-              <p>
-                With expertise in containerization, orchestration, and infrastructure automation, 
-                I specialize in building and maintaining robust CI/CD pipelines that transform 
-                how organizations deploy and scale their applications.
-              </p>
-              
-              <p>
-                My focus is on reliability, scalability, and developer productivity. I believe 
-                in automating repetitive tasks, implementing infrastructure as code, and 
-                creating monitoring solutions that provide actionable insights.
-              </p>
-              
-              <p>
-                When I'm not optimizing deployment pipelines or configuring Kubernetes clusters, 
-                I enjoy exploring new cloud technologies and contributing to open-source DevOps tools.
-              </p>
+              {profile.about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             </div>
           </motion.div>
         </div>
@@ -117,15 +98,33 @@ const AboutSinglePage = () => {
           <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
             Core Skills & Technologies
           </h2>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {skills.map((skill, index) => (
-              <SkillBadge
-                key={skill.name}
-                name={skill.name}
-                icon={skill.icon}
-                index={index}
-              />
+          <div className="space-y-12">
+            {skillGroups.map((group) => (
+              <div key={group.name}>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-5">{group.name}</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+                  {group.skills.map((skill, index) => (
+                    <SkillBadge key={skill} name={skill} icon={skillIcons[skill] ?? FiCode} index={index} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-20"
+        >
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">Certifications</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {certifications.map((certification) => (
+              <div key={certification} className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 text-gray-700 dark:text-gray-300">
+                {certification}
+              </div>
             ))}
           </div>
         </motion.div>

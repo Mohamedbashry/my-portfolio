@@ -1,13 +1,11 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { contactLinks } from '../data/portfolio';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    { icon: FaGithub, url: 'https://github.com/bashry', label: 'GitHub' },
-    { icon: FaLinkedin, url: 'https://linkedin.com/in/bashry', label: 'LinkedIn' },
-    { icon: FaEnvelope, url: 'mailto:bashry.dev@gmail.com', label: 'Email' },
-  ];
+  const socialIcons = { GitHub: FaGithub, LinkedIn: FaLinkedin, Email: FaEnvelope };
+  const socialLinks = contactLinks.filter((link) => link.label !== 'Resume');
 
   return (
     <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-auto">
@@ -20,7 +18,9 @@ const Footer = () => {
 
           {/* Social Links */}
           <div className="flex space-x-6">
-            {socialLinks.map((link) => (
+            {socialLinks.map((link) => {
+              const Icon = socialIcons[link.label as keyof typeof socialIcons];
+              return (
               <a
                 key={link.label}
                 href={link.url}
@@ -29,9 +29,10 @@ const Footer = () => {
                 className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300"
                 aria-label={link.label}
               >
-                <link.icon className="w-5 h-5" />
+                <Icon className="w-5 h-5" />
               </a>
-            ))}
+              );
+            })}
           </div>
 
           {/* Built With */}

@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from '../components/ProjectCard';
-import projectsData from '../data/projects.json';
+import { projectFilters, projects } from '../data/portfolio';
 
 const ProjectsSinglePage = () => {
   const [filter, setFilter] = useState<string>('All');
-  const categories = ['All', 'Cloud', 'Automation', 'Monitoring'];
-
   const filteredProjects = filter === 'All' 
-    ? projectsData 
-    : projectsData.filter(project => project.category === filter);
+    ? projects
+    : projects.filter(project => project.tags.includes(filter));
 
   return (
     <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
@@ -22,7 +20,7 @@ const ProjectsSinglePage = () => {
           transition={{ duration: 0.5 }}
           className="section-title"
         >
-          DevOps Projects
+          Selected Projects
         </motion.h1>
 
         {/* Description */}
@@ -33,7 +31,7 @@ const ProjectsSinglePage = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-center text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto mb-12"
         >
-          A showcase of my work in automation, cloud infrastructure, and deployment pipelines.
+          A selection of full-stack applications, software projects, cloud automation, and design work.
         </motion.p>
 
         {/* Filter Buttons */}
@@ -44,7 +42,7 @@ const ProjectsSinglePage = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {categories.map((category) => (
+          {projectFilters.map((category) => (
             <button
               key={category}
               onClick={() => setFilter(category)}
