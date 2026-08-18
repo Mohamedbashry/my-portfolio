@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 import ThemeToggle from './ThemeToggle';
 
@@ -45,7 +45,10 @@ const NavbarSinglePage = () => {
   };
 
   return (
-    <nav
+    <motion.nav
+      initial={{ y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
           ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg'
@@ -67,10 +70,12 @@ const NavbarSinglePage = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); scrollToSection(link.href); }}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.96 }}
                 className={`relative font-medium transition-colors duration-300 ${
                   activeSection === link.href.substring(1)
                     ? 'text-primary-600 dark:text-primary-400'
@@ -81,10 +86,11 @@ const NavbarSinglePage = () => {
                 {activeSection === link.href.substring(1) && (
                   <motion.div
                     layoutId="underline"
-                    className="absolute left-0 right-0 h-0.5 bg-primary-600 dark:bg-primary-400 bottom-[-4px]"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    className="absolute left-0 right-0 h-0.5 bg-primary-600 dark:bg-primary-400 bottom-[-6px]"
                   />
                 )}
-              </a>
+              </motion.a>
             ))}
             <ThemeToggle />
           </div>
@@ -92,30 +98,50 @@ const NavbarSinglePage = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
             <ThemeToggle />
-            <button
+            <motion.button
               onClick={() => setIsOpen(!isOpen)}
+              whileTap={{ scale: 0.9 }}
               className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+              aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
             >
-              {isOpen ? <HiX className="h-6 w-6" /> : <HiMenu className="h-6 w-6" />}
-            </button>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={isOpen ? 'close' : 'open'}
+                  initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                  transition={{ duration: 0.18 }}
+                  className="block"
+                >
+                  {isOpen ? <HiX className="h-6 w-6" /> : <HiMenu className="h-6 w-6" />}
+                </motion.span>
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="md:hidden bg-white dark:bg-gray-900 shadow-lg"
-        >
-          <div className="px-4 pt-2 pb-4 space-y-2">
-            {navLinks.map((link) => (
-              <a
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg"
+          >
+            <div className="px-4 pt-2 pb-4 space-y-2">
+              {navLinks.map((link, index) => (
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); scrollToSection(link.href); }}
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -12 }}
+                transition={{ delay: index * 0.04 }}
+                whileTap={{ scale: 0.98 }}
                 className={`block px-4 py-2 rounded-lg font-medium transition-colors duration-300 ${
                   activeSection === link.href.substring(1)
                     ? 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400'
@@ -123,12 +149,13 @@ const NavbarSinglePage = () => {
                 }`}
               >
                 {link.name}
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </nav>
+              </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 
