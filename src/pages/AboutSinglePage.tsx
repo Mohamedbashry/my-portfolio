@@ -65,7 +65,7 @@ const AboutSinglePage = () => {
               <img 
                 src="/Bashryimg.jpg" 
                 alt="Mohamed Bashry" 
-                className="w-full h-full object-cover object-[100%_70%]"
+                className="w-full h-full object-cover object-[100%_20%]"
               />
             </div>
           </motion.div>
