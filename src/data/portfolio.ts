@@ -75,7 +75,7 @@ export const projects: Project[] = [
     techStack: ['ASP.NET Core MVC', 'C#', 'Entity Framework Core', 'MySQL', 'Bootstrap', 'JavaScript'],
     role: 'Full-Stack Developer',
     links: [],
-    image: 'public/Bashryimg.jpg',
+    image: '',
   },
   {
     id: 'alumni-management',
