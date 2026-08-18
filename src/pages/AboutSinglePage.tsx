@@ -82,7 +82,7 @@ const AboutSinglePage = () => {
             
             <div className="space-y-4 text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
               <p>
-                I'm passionate about bridging the gap between development and operations, 
+                Iam passionate about bridging the gap between development and operations, 
                 creating seamless workflows that empower teams to deliver software faster 
                 and more reliably.
               </p>
