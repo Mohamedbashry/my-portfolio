@@ -63,7 +63,7 @@ const AboutSinglePage = () => {
           >
             <div className="w-full max-w-md aspect-square rounded-2xl shadow-2xl overflow-hidden">
               <img 
-                src="/Bashryimg.jpg" 
+                src="/Bashryimg.jpeg" 
                 alt="Mohamed Bashry" 
                 className="w-full h-full object-cover object-[100%_25%]"
               />
